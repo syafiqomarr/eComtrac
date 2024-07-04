@@ -1,0 +1,51 @@
+package com.ssm.ezbiz.dashboard;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import com.ssm.ezbiz.errorlog.MyInternalErrorPage;
+import com.ssm.ezbiz.robFormB.EditRobFormBPage;
+import com.ssm.ezbiz.robFormC.EditRobFormCPage;
+import com.ssm.ezbiz.robformA.EditRobFormAPage;
+import com.ssm.ezbiz.service.RobFormBService;
+import com.ssm.ezbiz.service.RobFormCService;
+import com.ssm.ezbiz.service.RobRenewalService;
+import com.ssm.llp.base.common.Parameter;
+import com.ssm.llp.base.common.db.SearchCriteria;
+import com.ssm.llp.base.common.sec.UserEnvironmentHelper;
+import com.ssm.llp.base.page.SecBasePage;
+import com.ssm.llp.base.wicket.component.SSMAjaxLink;
+import com.ssm.llp.base.wicket.component.SSMLabel;
+import com.ssm.llp.ezbiz.model.RobFormB;
+import com.ssm.llp.ezbiz.model.RobFormC;
+import com.ssm.llp.ezbiz.model.RobRenewal;
+import com.ssm.llp.mod1.model.LlpUserProfile;
+import com.ssm.llp.mod1.service.LlpUserProfileService;
+import com.ssm.llp.page.robRenewal.EditRobRenewalPage;
+import com.ssm.ws.RobBusinessSummaryInfo;
+
+@SuppressWarnings("serial")
+public class DashboardInternalPage extends SecBasePage {
+
+	
+
+	@SuppressWarnings("unchecked")
+	public DashboardInternalPage() {
+		ssmError("");
+	}
+
+	public String getPageTitle() {
+		String titleKey = "page.title.dashboardInternal";
+		return titleKey;
+	}
+}

@@ -1,0 +1,7 @@
+<wicket:extend>
+
+	<div class="ui center aligned raised segment">
+		<p><wicket:message key="page.title.dashboardInternal.comingSoon" /></p>
+	</div>
+	
+</wicket:extend>

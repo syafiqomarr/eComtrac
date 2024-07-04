@@ -1,0 +1,76 @@
+package com.ssm.ezbiz.dao.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.ssm.ezbiz.dao.RobTrainingConfigDao;
+import com.ssm.llp.base.common.dao.impl.BaseDaoImpl;
+import com.ssm.llp.base.common.model.LlpParameters;
+import com.ssm.llp.base.common.sec.UserEnvironmentHelper;
+import com.ssm.llp.ezbiz.model.RobTrainingConfig;
+
+@Repository
+public class RobTrainingConfigDaoImpl extends BaseDaoImpl<RobTrainingConfig, Integer> implements RobTrainingConfigDao {
+
+	@Override
+	public List<RobTrainingConfig> getAvailableTraining() {
+//		
+//		Date date = new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String hql = "select a from RobTrainingConfig a";
+
+		if (!UserEnvironmentHelper.isInternalUser()) {
+			hql += " where a.standardFee > 0 ";
+			hql += " and a.specialFee > 0 ";
+			hql += " and a.trainingStartTime != 'N/A' ";
+			hql += " and a.trainingEndTime != 'N/A' ";
+			hql += " and a.isActive = 'T' "; // T=true..
+			hql += " and date(a.trainingStartDt) > today ";
+			hql += " and a.trainingStartTime != 'N/A' ";
+			hql += " and a.trainingEndTime != 'N/A' ";
+		}
+		hql += " order by a.trainingListSeq, a.trainingStartDt asc ";
+		// hql += " order by a.trainingStartDt asc ";
+		// hql += " order by a.trainingId desc ";
+
+		return getHibernateTemplate().find(hql);
+	}
+
+	@Override
+	public List<RobTrainingConfig> getAvailableTrainingCorp() {
+		String hql = "select a from RobTrainingConfig a";
+
+		if (!UserEnvironmentHelper.isInternalUser()) {
+			hql += " where a.standardFee = '0' ";
+			hql += " and a.specialFee = '0' ";
+			hql += " and a.isActive = 'T' "; // T=true..
+			hql += " and date(a.trainingStartDt) > today ";
+		}		
+		hql += " order by a.trainingListSeq, a.trainingStartDt asc ";
+		// hql += " order by a.trainingStartDt asc ";
+		// hql += " order by a.trainingId desc ";
+
+		return getHibernateTemplate().find(hql);
+	}
+	
+	@Override
+	public List<RobTrainingConfig> getAvailableOtherPayment() {
+		String hql = "select a from RobTrainingConfig a";
+
+		if (!UserEnvironmentHelper.isInternalUser()) {
+			hql += " where a.trainingStartTime = 'N/A' ";
+			hql += " and a.trainingEndTime = 'N/A' ";
+			hql += " and a.isActive = 'T' "; // T=true..
+			hql += " and date(a.trainingStartDt) > today ";
+		}		
+		hql += " order by a.trainingListSeq, a.trainingStartDt asc ";
+		// hql += " order by a.trainingStartDt asc ";
+		// hql += " order by a.trainingId desc ";
+
+		return getHibernateTemplate().find(hql);
+	}
+}
