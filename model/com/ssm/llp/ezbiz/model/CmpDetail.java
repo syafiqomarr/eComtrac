@@ -58,7 +58,7 @@ public class CmpDetail implements java.io.Serializable {
 		this.createDt = createDt;
 		this.createBy = createBy;
 		this.updateDt = updateDt;
-		this.updateBy = updateBy;
+		this.updateBy = updateBy; wekk wekkk
 	}
 
 	@Id
