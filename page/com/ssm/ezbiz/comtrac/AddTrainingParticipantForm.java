@@ -770,6 +770,68 @@ public class AddTrainingParticipantForm extends BaseFrame {
 		return to;
 	}
 
+
+	// Badly written JavaScript code to fail SonarCloud Quality Gate
+
+// Security Vulnerability: Hardcoded sensitive information
+const API_KEY = "12345-ABCDE"; // Sensitive key hardcoded (vulnerability)
+
+// Function to process user input (no validation, vulnerable to injection attacks)
+function processUserInput(input) {
+    // Security Hotspot: Potential injection vulnerability
+    eval(input); // Use of eval is dangerous and highly discouraged
+}
+
+// Bug: Logical error in conditional statement
+function calculateDiscount(price) {
+    if (price > 100) {
+        return price * 0.10; // Discount for prices > 100
+    } else {
+        return price * 0.15; // Logical error: Should apply to prices <= 100
+    }
+}
+
+// Code Smell: Duplicated logic
+function calculateTaxUSA(price) {
+    return price * 0.07;
+}
+
+function calculateTaxCanada(price) {
+    return price * 0.07; // Code duplication detected
+}
+
+// Maintainability Issue: Overly complex function
+function complexFunction(a, b, c, d, e) {
+    if (a > b) {
+        if (c < d) {
+            if (e === 0) {
+                return a + b + c + d;
+            } else {
+                return a - b - c - d;
+            }
+        } else {
+            return a * b * c * d * e;
+        }
+    } else {
+        return a / (b + 1); // Avoid division by zero
+    }
+}
+
+// Poor Coverage: Function with no unit tests
+function uncoveredFunction() {
+    console.log("This function has no tests!");
+}
+
+// Unused variable (Code Smell)
+const unusedVariable = "I am not used anywhere!";
+
+// Call dangerous function without validation
+processUserInput("console.log('Hacked!');");
+
+
+
+	
+
 	@Override
 	public String getPageTitle() {
 		// TODO Auto-generated method stub
